@@ -8,8 +8,8 @@ import (
 	"runtime/pprof"
 )
 
-func Main(ctx context.Context, filename string, main func(context.Context) error) error {
-	file, err := createFile(filename)
+func Main(ctx context.Context, main func(context.Context) error) error {
+	file, err := os.CreateTemp("", "mane-pprof")
 	if err != nil {
 		return err
 	}
@@ -24,12 +24,4 @@ func Main(ctx context.Context, filename string, main func(context.Context) error
 	cmd.Stderr = os.Stderr
 
 	return errors.Join(mainErr, cmd.Run())
-}
-
-func createFile(filename string) (*os.File, error) {
-	if filename != "" {
-		return os.Create(filename)
-	}
-
-	return os.CreateTemp("", "mane-pprof")
 }
