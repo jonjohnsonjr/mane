@@ -13,6 +13,7 @@ import (
 	"go.opentelemetry.io/otel/sdk/trace"
 )
 
+// Main spins up otel-desktop-viewer and an otel exporter.
 func Main(ctx context.Context, main func(context.Context) error) error {
 	cmd := exec.CommandContext(ctx, "otel-desktop-viewer")
 	cmd.Stdin = os.Stdin
@@ -27,6 +28,11 @@ func Main(ctx context.Context, main func(context.Context) error) error {
 	os.Setenv("OTEL_TRACES_EXPORTER", "otlp")
 	os.Setenv("OTEL_EXPORTER_OTLP_PROTOCOL", "http/protobuf")
 
+	return Context(ctx, main)
+}
+
+// Context spins up an otel exporter.
+func Context(ctx context.Context, main func(context.Context) error) error {
 	client := otlptracehttp.NewClient()
 	exporter, err := otlptrace.New(ctx, client)
 	if err != nil {
