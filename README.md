@@ -17,12 +17,13 @@ import (
 	"context"
 	"log"
 
+	"github.com/jonjohnsonjr/mane"
 	"github.com/jonjohnsonjr/mane/pprof"
-	"exampel.com/my/cobra/based/cli"
+	"example.com/my/cobra/based/cli"
 )
 
 func main() {
-	log.Fatal(pprof.Main(context.Background(), cli.New().ExecuteContext))
+	log.Fatal(pprof.Main(mane.Context(), cli.New().ExecuteContext))
 }
 ```
 
@@ -37,12 +38,13 @@ import (
 	"context"
 	"log"
 
+	"github.com/jonjohnsonjr/mane"
 	"github.com/jonjohnsonjr/mane/trace"
-	"exampel.com/my/cobra/based/cli"
+	"example.com/my/cobra/based/cli"
 )
 
 func main() {
-	log.Fatal(trace.Main(context.Background(), cli.New().ExecuteContext))
+	log.Fatal(trace.Main(mane.Context(), cli.New().ExecuteContext))
 }
 ```
 
@@ -55,13 +57,14 @@ import (
 	"context"
 	"log"
 
+	"github.com/jonjohnsonjr/mane"
 	"github.com/jonjohnsonjr/mane/pprof"
 	"github.com/jonjohnsonjr/mane/trace"
-	"exampel.com/my/cobra/based/cli"
+	"example.com/my/cobra/based/cli"
 )
 
 func main() {
-	log.Fatal(pprof.Main(context.Background(), mainE))
+	log.Fatal(pprof.Main(mane.Context(), mainE))
 }
 
 func mainE(ctx context.Context) error {
