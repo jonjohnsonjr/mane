@@ -1,3 +1,3 @@
-# main
+# mane
 
 A better `main` function.
