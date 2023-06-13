@@ -29,7 +29,7 @@ func main() {
 
 ## trace
 
-This will pop open the go pprof web view:
+This will pop open `otel-desktop-viewer` and start tracing:
 
 ```go
 package main
@@ -49,6 +49,8 @@ func main() {
 ```
 
 ## both
+
+This does both!
 
 ```go
 package main
