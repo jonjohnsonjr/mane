@@ -77,6 +77,8 @@ package main
 import (
 	"context"
 
+	"go.opentelemetry.io/otel"
+
 	"github.com/jonjohnsonjr/mane/trace"
 )
 
