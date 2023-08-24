@@ -38,7 +38,7 @@ func bar(ctx context.Context) error {
 }
 
 func baz(ctx context.Context) error {
-	ctx, span := otel.Tracer("example.com/something").Start(ctx, "bar")
+	ctx, span := otel.Tracer("example.com/something").Start(ctx, "baz")
 	defer span.End()
 
 	time.Sleep(3 * time.Second)
