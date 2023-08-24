@@ -3,6 +3,7 @@ package pprof
 import (
 	"context"
 	"errors"
+	"log"
 	"os"
 	"os/exec"
 	"runtime/pprof"
@@ -13,6 +14,8 @@ func Main(ctx context.Context, main func(context.Context) error) error {
 	if err != nil {
 		return err
 	}
+
+	log.Printf("pprof: %s", file.Name())
 
 	pprof.StartCPUProfile(file)
 	mainErr := main(ctx)
