@@ -67,29 +67,35 @@ func main() {
 
 ## trace
 
-Dependency: [`otel-desktop-viewer`](https://github.com/CtrlSpice/otel-desktop-viewer)
-
-This will pop open `otel-desktop-viewer` and start tracing:
-
 ```go
 package main
 
 import (
 	"context"
+	"log"
 
 	"go.opentelemetry.io/otel"
 
 	"github.com/jonjohnsonjr/mane/trace"
+	"github.com/jonjohnsonjr/mane"
 )
 
 func main() {
-    trace.Main(func(ctx context.Context) error {
+    f, err := os.CreateTemp("", "my-trace-file")
+    if err != nil {
+        panic(err)
+    }
+    defer f.Close()
+
+    trace.Main(mane.Context(), f, func(ctx context.Context) error {
 	    if err := foo(ctx); err != nil {
 	            return err
 	    }
 
 	    return bar(ctx)
     })
+
+    log.Printf("Writing tracefile to %s", f.Name())
 }
 
 func foo(ctx context.Context) error {

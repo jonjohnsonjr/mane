@@ -5,6 +5,8 @@ import (
 	"log"
 )
 
+type Func func(context.Context) error
+
 // Main is like main() but with a signal-respecting ctx and error return.
 // It will log.Fatal if the given function returns an error.
 func Main(main func(ctx context.Context) error) {
